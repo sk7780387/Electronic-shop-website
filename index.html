@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroHub - Premium Electronics E-Commerce Platform</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Shop the latest electronics, smartphones, laptops, cameras, and accessories at ElectroHub. Premium quality, best prices, fast shipping.">
+    <meta name="keywords" content="electronics, smartphones, laptops, cameras, gadgets, online shopping">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    
+    <!-- Preloader (Optional) -->
+    <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; z-index: 9999;">
+        <div class="spinner" style="width: 60px; height: 60px; border: 5px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand animate__animated animate__fadeInLeft" href="#hero">
+                <i class="fas fa-bolt"></i> ElectroHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">
+                            <i class="fas fa-box"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">
+                            <i class="fas fa-th-large"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <i class="fas fa-info-circle"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                    
+                    <!-- Search Bar -->
+                    <li class="nav-item ms-3">
+                        <div class="search-box-nav">
+                            <input type="text" id="searchInput" placeholder="Search products..." aria-label="Search products">
+                            <button onclick="searchProducts()" aria-label="Search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </li>
+                    
+                    <!-- Cart Icon -->
+                    <li class="nav-item ms-2">
+                        <button class="btn btn-outline-primary position-relative cart-btn-nav" onclick="toggleCart()" aria-label="Shopping cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+                        </button>
+                    </li>
+                    
+                    <!-- User Menu -->
+                    <li class="nav-item dropdown ms-2">
+                        <button class="btn btn-outline-primary dropdown-toggle" id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> <span id="userNameDisplay">Account</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" id="userDropdownMenu" aria-labelledby="userMenuBtn">
+                            <!-- Dynamic content will be inserted here -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles"></div>
+        <div class="container position-relative">
+            <div class="hero-content text-center">
+                <h1 class="hero-title animate__animated animate__fadeInDown">
+                    Welcome to <span class="gradient-text">ElectroHub</span>
+                </h1>
+                <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                    Explore our curated selection of the latest and greatest electronic gadgets
+                </p>
+                <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#products" class="btn btn-hero btn-primary btn-lg me-3">
+                        <i class="fas fa-shopping-bag"></i> Explore Products
+                    </a>
+                    <a href="#categories" class="btn btn-hero btn-outline-light btn-lg">
+                        <i class="fas fa-th-large"></i> Browse Categories
+                    </a>
+                </div>
+                
+                <!-- Stats Counter -->
+                <div class="hero-stats row g-4 mt-5 animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="col-6 col-md-3">
+                        <div class="stat-box">
+                            <i class="fas fa-box"></i>
+                            <h3 class="stat-number" data-target="1000">0</h3>
+                            <p>Products</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-box">
+                            <i class="fas fa-users"></i>
+                            <h3 class="stat-number" data-target="5000">0</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-box">
+                            <i class="fas fa-star"></i>
+                            <h3 class="stat-number" data-target="4.8">0</h3>
+                            <p>Average Rating</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-box">
+                            <i class="fas fa-shipping-fast"></i>
+                            <h3 class="stat-number" data-target="10000">0</h3>
+                            <p>Orders Delivered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="scroll-indicator animate__animated animate__bounce animate__infinite">
+            <a href="#filter-section">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Advanced Filter Section -->
+    <section class="filter-section" id="filter-section">
+        <div class="container">
+            <div class="filter-header text-center mb-4">
+                <h3 class="gradient-text">
+                    <i class="fas fa-filter"></i> Advanced Filters
+                </h3>
+                <p class="text-muted">Find exactly what you're looking for</p>
+            </div>
+            
+            <div class="filter-card">
+                <div class="row g-3 align-items-end">
+                    <div class="col-lg-3 col-md-6">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-list"></i> Category
+                        </label>
+                        <select class="form-select form-select-lg" id="categoryFilter" onchange="applyFilters()">
+                            <option value="all">All Categories</option>
+                            <option value="smartphones">📱 Smartphones</option>
+                            <option value="laptops">💻 Laptops</option>
+                            <option value="headphones">🎧 Headphones</option>
+                            <option value="cameras">📷 Cameras</option>
+                            <option value="smartwatch">⌚ Smartwatches</option>
+                            <option value="accessories">🔌 Accessories</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-dollar-sign"></i> Price Range: $<span id="priceValue" class="text-primary">0 - 3000</span>
+                        </label>
+                        <input type="range" class="form-range" id="priceRange" min="0" max="3000" value="3000" step="50" oninput="updatePriceLabel()">
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-6">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-star"></i> Min Rating
+                        </label>
+                        <select class="form-select form-select-lg" id="ratingFilter" onchange="applyFilters()">
+                            <option value="0">All Ratings</option>
+                            <option value="4">4★ & above</option>
+                            <option value="4.5">4.5★ & above</option>
+                            <option value="4.8">4.8★ & above</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-6">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-sort"></i> Sort By
+                        </label>
+                        <select class="form-select form-select-lg" id="sortFilter" onchange="applyFilters()">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Top Rated</option>
+                            <option value="discount">Best Discount</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-12">
+                        <button class="btn btn-secondary btn-lg w-100" onclick="resetFilters()">
+                            <i class="fas fa-redo"></i> Reset All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">
+                    <span class="gradient-text">Featured Products</span>
+                </h2>
+                <p class="section-subtitle">Discover our handpicked selection of premium electronics</p>
+                <div class="title-divider"></div>
+            </div>
+            
+            <div class="row" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop by Category -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">
+                    <span class="gradient-text">Shop by Category</span>
+                </h2>
+                <p class="section-subtitle">Browse through our diverse range of electronic categories</p>
+                <div class="title-divider"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-card" onclick="filterByCategory('smartphones')">
+                        <div class="category-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h5>Smartphones</h5>
+                        <p class="category-count">100+ Products</p>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-card" onclick="filterByCategory('laptops')">
+                        <div class="category-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h5>Laptops</h5>
+                        <p class="category-count">80+ Products</p>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-card" onclick="filterByCategory('headphones')">
+                        <div class="category-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <h5>Headphones</h5>
+                        <p class="category-count">120+ Products</p>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-card" onclick="filterByCategory('cameras')">
+                        <div class="category-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h5>Cameras</h5>
+                        <p class="category-count">60+ Products</p>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-card" onclick="filterByCategory('smartwatch')">
+                        <div class="category-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h5>Smartwatches</h5>
+                        <p class="category-count">90+ Products</p>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-card" onclick="filterByCategory('accessories')">
+                        <div class="category-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <h5>Accessories</h5>
+                        <p class="category-count">200+ Products</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h5>Free Shipping</h5>
+                        <p>On orders over $100</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Secure Payment</h5>
+                        <p>100% secure transactions</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h5>Easy Returns</h5>
+                        <p>30-day return policy</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h5>24/7 Support</h5>
+                        <p>Dedicated customer service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=800" alt="About ElectroHub" class="img-fluid rounded-4 shadow-lg">
+                        <div class="about-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Trusted Since 2020</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h2 class="section-title mb-4">
+                            About <span class="gradient-text">ElectroHub</span>
+                        </h2>
+                        <p class="lead">ElectroHub was founded with a passion for technology and a mission to bring the latest electronic innovations directly to you.</p>
+                        <p>We believe in quality, affordability, and exceptional customer service. Our curated selection features top brands and cutting-edge gadgets, ensuring you always have access to the best tech on the market.</p>
+                        
+                        <div class="about-features mt-4">
+                            <div class="about-feature-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Premium Quality Products</span>
+                            </div>
+                            <div class="about-feature-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Competitive Pricing</span>
+                            </div>
+                            <div class="about-feature-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Fast & Secure Delivery</span>
+                            </div>
+                            <div class="about-feature-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Expert Customer Support</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#products" class="btn btn-primary btn-lg mt-4">
+                            <i class="fas fa-shopping-bag"></i> Shop Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">
+                    <span class="gradient-text">Contact Us</span>
+                </h2>
+                <p class="section-subtitle">Have questions? We'd love to hear from you</p>
+                <div class="title-divider"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6 mb-4">
+                    <div class="contact-info-card">
+                        <h4 class="mb-4">Get in Touch</h4>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h5>Address</h5>
+                                <p>Phase-2 Urban Estate, Dugri, LDH 141013</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <h5>Phone</h5>
+                                <p>+91 12345-67890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h5>Email</h5>
+                                <p>support@electrohub.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <h5>Business Hours</h5>
+                                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="contact-form-card">
+                        <h4 class="mb-4">Send us a Message</h4>
+                        <form id="contactForm" onsubmit="handleContactForm(event)">
+                            <div class="mb-3">
+                                <label class="form-label">Your Name</label>
+                                <input type="text" class="form-control form-control-lg" placeholder="Abc" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Your Email</label>
+                                <input type="email" class="form-control form-control-lg" placeholder="abc@example.com" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Subject</label>
+                                <input type="text" class="form-control form-control-lg" placeholder="How can we help?" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Your Message</label>
+                                <textarea class="form-control form-control-lg" rows="5" placeholder="Tell us what you need..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-widget">
+                        <h5 class="footer-title">
+                            <i class="fas fa-bolt"></i> ElectroHub
+                        </h5>
+                        <p>Your trusted destination for premium electronics and gadgets. Quality products, competitive prices, exceptional service.</p>
+                        <div class="social-links mt-4">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget">
+                        <h5 class="footer-title">Quick Links</h5>
+                        <ul class="footer-links">
+                            <li><a href="#hero"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
+                            <li><a href="#categories"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                            <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h5 class="footer-title">Categories</h5>
+                        <ul class="footer-links">
+                            <li><a href="#" onclick="filterByCategory('smartphones')"><i class="fas fa-chevron-right"></i> Smartphones</a></li>
+                            <li><a href="#" onclick="filterByCategory('laptops')"><i class="fas fa-chevron-right"></i> Laptops</a></li>
+                            <li><a href="#" onclick="filterByCategory('headphones')"><i class="fas fa-chevron-right"></i> Headphones</a></li>
+                            <li><a href="#" onclick="filterByCategory('cameras')"><i class="fas fa-chevron-right"></i> Cameras</a></li>
+                            <li><a href="#" onclick="filterByCategory('accessories')"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h5 class="footer-title">Customer Service</h5>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Shipping Policy</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Return Policy</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p>&copy; <span id="currentYear">2025</span> ElectroHub. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p>Made with <i class="fas fa-heart text-danger"></i> by SHIVAM KUMAR (ElectroHub Team)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h4><i class="fas fa-shopping-cart"></i> Shopping Cart</h4>
+            <button class="btn-close btn-close-white" onclick="toggleCart()" aria-label="Close cart"></button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically loaded -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (10%):</span>
+                    <span id="taxAmount">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Discount:</span>
+                    <span id="discountAmount" class="text-success">-$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span><strong>Total:</strong></span>
+                    <span id="cartTotal"><strong>$0.00</strong></span>
+                </div>
+            </div>
+            <button class="btn btn-success btn-lg w-100" onclick="proceedToCheckout()">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">
+                        <i class="fas fa-sign-in-alt"></i> Login to Your Account
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control form-control-lg" id="loginEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control form-control-lg" id="loginPassword" placeholder="Enter your password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="#" class="text-primary fw-bold" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Register here</a></p>
+                        <p><small class="text-muted">Admin Login: admin@electrohub.com / admin123</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">
+                        <i class="fas fa-user-plus"></i> Create Your Account
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm" onsubmit="handleRegister(event)">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control form-control-lg" id="regName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control form-control-lg" id="regEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control form-control-lg" id="regPhone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control form-control-lg" id="regAddress" rows="2" placeholder="Enter your address" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control form-control-lg" id="regPassword" placeholder="Create a password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control form-control-lg" id="regConfirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-user-plus"></i> Register
+                        </button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="#" class="text-primary fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">
+                        <i class="fas fa-box-open"></i> Product Details
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="productModalBody">
+                    <!-- Product details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkoutModalLabel">
+                        <i class="fas fa-credit-card"></i> Checkout
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="checkoutContent">
+                    <!-- Checkout form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order History Modal -->
+    <div class="modal fade" id="orderHistoryModal" tabindex="-1" aria-labelledby="orderHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderHistoryModalLabel">
+                        <i class="fas fa-history"></i> Order History
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="orderHistoryContent">
+                    <!-- Order history will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adminModalLabel">
+                        <i class="fas fa-tools"></i> Admin Dashboard
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="adminContent">
+                    <!-- Admin dashboard will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Additional Scripts -->
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => preloader.style.display = 'none', 300);
+                }, 500);
+            }
+        });
+        
+        // Back to Top Button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+        
+        // Trigger counter animation when hero is visible
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            observer.observe(heroSection);
+        }
+        
+        // Add spin animation for preloader
+        const spinStyle = document.createElement('style');
+        spinStyle.textContent = `
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(spinStyle);
+    </script>
+</body>
+</html>
